@@ -1,7 +1,7 @@
 // src/components/Login.js
 import React from 'react';
-import useForm from '../hooks/useForm';
-import useFetch from '../hooks/useFetch';
+import useForm from '../../hooks/useForm';
+import useFetch from '../../hooks/useFetch';
 
 const Login = () => {
   const { values, handleChange, resetForm } = useForm({ username: '', password: '' });

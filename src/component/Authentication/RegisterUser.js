@@ -1,7 +1,7 @@
 // src/components/Register.js
 import React from 'react';
-import useForm from '../hooks/useForm';
-import useFetch from '../hooks/useFetch';
+import useForm from '../../hooks/useForm';
+import useFetch from '../../hooks/useFetch';
 
 const Register = () => {
   const { values, handleChange, resetForm } = useForm({ username: '', email: '', password: '' });
@@ -9,8 +9,9 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(values);
     await fetchData('/api/auth/register', 'POST', values);
-    resetForm(); // Reset the form after submission
+    // resetForm(); // Reset the form after submission
   };
 
   return (
