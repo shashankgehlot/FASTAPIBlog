@@ -23,3 +23,21 @@ export const storeToken = (token) => {
     }
     return null;
   }
+
+
+  export const fetchAuthorData = async () => {
+    const decodedToken = decodeToken();
+    if (decodedToken && decodedToken.user_id) {
+      const userId = decodedToken.user_id;
+      const url = `/api/author/user/${userId}`;
+      const options = {};
+      options.method = 'GET';
+      options.headers = { 'Content-Type': 'application/json' };
+      if (decodedToken) {
+        options.headers['Authorization'] = `Bearer ${getToken()}`;
+      }
+      return await fetch(url, options)
+    } else {
+      throw new Error('User ID is missing in the decoded token');
+    }
+  };
