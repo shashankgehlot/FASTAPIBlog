@@ -16,10 +16,18 @@ const useForm = (initialValues) => {
     setValues(initialValues);
   };
 
+  const setFormValues = (newValues) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      ...newValues,
+    }));
+  };
+
   return {
     values,
     handleChange,
     resetForm,
+    setFormValues
   };
 };
 

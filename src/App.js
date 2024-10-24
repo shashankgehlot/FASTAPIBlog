@@ -5,6 +5,7 @@ import Login from './component/Authentication/LoginUser';
 import Register from './component/Authentication/RegisterUser';
 import Navigation from './component/Navigation/navigationBar';
 import BlogForm from './component/Blog/BlogForm';
+import BlogEdit from './component/Blog/BlogEdit';
 import Post from './component/Blog/Post';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // index.js or App.js
@@ -21,7 +22,8 @@ const App = () => (
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/create-blog" element={<BlogForm />} />
-    <Route path="/post/:slug" element={<Post />} /> {/* New route with slug */}
+    <Route path="/post/:slug" element={<Post />} />
+    <Route path="/edit-blog/:id" element={<BlogEdit isEdit={true} />} />
     </Routes>
   </Router>
 );
