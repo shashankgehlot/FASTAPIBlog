@@ -5,9 +5,9 @@ import Login from './component/Authentication/LoginUser';
 import Register from './component/Authentication/RegisterUser';
 import Navigation from './component/Navigation/navigationBar';
 import BlogForm from './component/Blog/BlogForm';
+import BlogEditForm from './component/Blog/BlogEdit';
 import Post from './component/Blog/Post';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// index.js or App.js
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 // import './index.css'; // Your global styles
@@ -22,6 +22,7 @@ const App = () => (
     <Route path="/register" element={<Register />} />
     <Route path="/create-blog" element={<BlogForm />} />
     <Route path="/post/:slug" element={<Post />} /> {/* New route with slug */}
+    <Route path="/edit-blog/:id" element={<BlogEditForm isEdit={true} />} />
     </Routes>
   </Router>
 );

@@ -14,7 +14,25 @@ const Post = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  return  (
+  return (
+    // <div>
+    //   {post ? (
+    //     <>
+    //       <h1>{post.title}</h1>
+    //       <ReactQuill
+    //         value={post.content}
+    //         readOnly={true}
+    //         theme="snow"
+    //         modules={{ toolbar: false }} // Disable the toolbar
+    //       />
+    //       {post.tags.map(tag => (
+    //         <span key={tag}> <i class="fa fa-tag" aria-hidden="true"></i>  {tag} </span>
+    //       ))}
+    //     </>
+    //   ) : (
+    //     <div>No post found</div>
+    //   )}
+    // </div>
     <div>
       {post ? (
         <>
@@ -25,11 +43,19 @@ const Post = () => {
             theme="snow"
             modules={{ toolbar: false }} // Disable the toolbar
           />
+          {post.tags && post.tags.length > 0 ? (
+            post.tags.map(tag => (
+              <span key={tag}> <i className="fa fa-tag" aria-hidden="true"></i> {tag} </span>
+            ))
+          ) : (
+            <span>No tags available</span>
+          )}
         </>
       ) : (
         <div>No post found</div>
       )}
     </div>
+
   );
 };
 

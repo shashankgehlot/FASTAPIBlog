@@ -16,6 +16,7 @@ const Home = () => {
           <div key={post.id}>
             <h2>{post.title}</h2>
             <Link to={`/post/${post.slug_title}`}>Read More</Link>
+            <Link to={`/edit-blog/${post.id}`}>Edit Blog</Link>
           </div>
         ))
       ) : (

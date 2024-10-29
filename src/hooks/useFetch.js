@@ -32,7 +32,7 @@ const useFetch = () => {
       }
       const response = await fetch(url, options);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        alert('Error: ' + response.statusText);
       }
       const result = await response.json();
       if (result.access_token) {
