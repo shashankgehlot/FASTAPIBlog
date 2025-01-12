@@ -9,23 +9,32 @@ import BlogEditForm from './component/Blog/BlogEdit';
 import Post from './component/Blog/Post';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import TrackingProvider from './Contextprovider/trackingProvider';
 
-// import './index.css'; // Your global styles
-// import './UiElements/editorStyles.css'; // Your custom styles
 
-const App = () => (
+const App = () => {
+  return (
+    <>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/create-blog" element={<BlogForm />} />
+        <Route path="/post/:slug" element={<Post />} />
+        <Route path="/topics" element={<Home />} />
+        <Route path="/edit-blog/:id" element={<BlogEditForm isEdit={true} />} />
+      </Routes>
+    </>
+  );
+};
+
+const MainApp = () => (
   <Router>
-    <Navigation />
-    <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/create-blog" element={<BlogForm />} />
-    <Route path="/post/:slug" element={<Post />} /> {/* New route with slug */}
-    <Route path="/edit-blog/:id" element={<BlogEditForm isEdit={true} />} />
-    </Routes>
+    <TrackingProvider>
+      <App />
+    </TrackingProvider>
   </Router>
 );
 
-
-export default App;
+export default MainApp;

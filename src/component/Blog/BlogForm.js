@@ -68,7 +68,7 @@ const BlogForm = () => {
       <TagsInput tags={tags} setTags={setTags} />
 
       <button type="submit" disabled={postLoading}>
-        {postLoading ? 'Posting...' : 'Post'}
+         {postLoading ? 'Posting...' : 'Post'}
       </button>
       
       {/* {authorLoading && <div>Loading author...</div>}
