@@ -14,6 +14,6 @@ COPY . .
 
 # Expose port (adjust if necessary)
 EXPOSE 3000
-
+CMD ["npm" "install" "react-scripts" "--save"]
 # Start the server
 CMD ["npm", "start"]

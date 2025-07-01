@@ -1,11 +1,13 @@
 // src/components/BlogForm.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import useForm from '../../hooks/useForm';
 import useFetch from '../../hooks/useFetch';
 import TextInput from '../../UiElements/TextInput';
 import TagsInput from '../../UiElements/TagInput';
+import ImageUploadInput from '../../UiElements/ImageInput';
 import RichTextEditor from '../../UiElements/RichTextEditor';
 import { fetchAuthorData } from '../../Utility/appUtility';
+
 
 const BlogForm = () => {
   const { values, handleChange, resetForm } = useForm({ title: '' });
@@ -13,7 +15,10 @@ const BlogForm = () => {
   const [content, setContent] = useState('');
   const [authorId, setAuthorId] = useState('');
   const [tags, setTags] = useState([]);
+  const [imageBase64, setImageBase64] = useState('');
+  const [postImageBase64, setPostImageBase64] = useState('');
 
+  const quillRef = useRef(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +48,9 @@ const BlogForm = () => {
       title: values.title,
       content: content,
       author_id: authorId,
-      tags: formattedTags
+      tags: formattedTags,
+      thumbnail_base64: imageBase64,
+      post_image_base64:postImageBase64
     };
     console.log(postData); // Log the entire postData object
     await postFetchData('/api/blog/posts/', 'POST', postData, 'application/json', true); // Include the token
@@ -52,7 +59,7 @@ const BlogForm = () => {
   
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="form-create" >
       <TextInput
         label="Title:"
         name="title"
@@ -64,11 +71,24 @@ const BlogForm = () => {
       <RichTextEditor
         value={content}
         onChange={setContent}
+        // ref={quillRef}
       />
       <TagsInput tags={tags} setTags={setTags} />
-
-      <button type="submit" disabled={postLoading}>
-         {postLoading ? 'Posting...' : 'Post'}
+      {/* Image Upload Input */}
+      <ImageUploadInput
+        label="Upload thumbnail:"
+        name="thumbnail_base64"
+        value={imageBase64}
+        onChange={setImageBase64}
+      />
+       <ImageUploadInput
+        label="Upload post:"
+        name="thumbnail_base64"
+        value={postImageBase64}
+        onChange={setPostImageBase64}
+      />
+      <button type="submit" id='create post' disabled={postLoading}>
+        {postLoading ? 'Posting...' : 'Post'}
       </button>
       
       {/* {authorLoading && <div>Loading author...</div>}
